@@ -1,0 +1,136 @@
+\documentclass{article}
+\usepackage{fontspec}
+\usepackage{xcolor}
+%\usepackage{sagetex}
+
+\usepackage{euler}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{unicode-math}
+
+
+\usepackage[makeroom]{cancel}
+\usepackage{ulem}
+
+\setlength\parindent{0em}
+\setlength\parskip{0.618em}
+\usepackage[a4paper,lmargin=1in,rmargin=1in,tmargin=1in,bmargin=1in]{geometry}
+
+\setmainfont[Mapping=tex-text]{Helvetica Neue LT Std 45 Light}
+
+\newcommand\N{\mathbb{N}}
+\newcommand\Z{\mathbb{Z}}
+\newcommand\Q{\mathbb{Q}}
+\newcommand\R{\mathbb{R}}
+\newcommand\C{\mathbb{C}}
+\newcommand\A{\mathbb{A}}
+
+\usepackage{harpoon}
+\newcommand*{\harp}[1]{\overrightharp{\ensuremath{#1}}}
+
+
+\usepackage[thinlines]{easytable}
+\begin{document}
+
+\paragraph{3} $\text{ }$
+
+Let $R$ be an integral domain, and let $S = R[[x]]$, which
+is the ring of formal power series in a variable $x$. (So an arbitrary
+element of $S$ is $f (x) = \sum_{i=0}^\infty a_i x^i$ where $a_i\in R$. In this
+ring we don’t care about convergence issues, so we don’t think of $f (x)$ as functions because we can’t
+necessarily “plug in values of $x$.” But we can still add and multiply formal power series, regardless
+of whether they converge, so $S$ is still a ring.) Show that $S$ is an
+integral domain.
+
+
+\uwave{pf.}
+
+Let $f,g \in S: f = \left(\sum_{i= 0}^{\infty} a_i x^i\right),$ and $g
+= \left(  \sum_{i=
+      0}^{\infty} b_i x^i\right)$ then,
+\[fg :=  \sum_{n= 0}^{\infty} \left(
+    \sum_{k=0}^n a_kb_{n-k}\right) x^n\text{ .}\]
+
+$R$ is an integral domain. So, $1\in R$.
+
+$1\neq 0$ in $R[[x]]$, since $1\neq 0$ in $R$.
+
+Let $f = 1$, then $a_0 = 1,$ and $a_i = 0\quad \forall i>0$. So,
+\begin{align*}
+1g &=  \sum_{n= 0}^{\infty} \left(
+     \sum_{k=0}^n a_kb_{n-k}\right) x^n\\
+  &=  \sum_{n= 0}^{\infty} \left(
+    a_0b_n + \sum_{k=1}^n a_kb_{n-k}\right) x^n\\
+  &=  \sum_{n= 0}^{\infty} \left(
+    1b_n + \sum_{k=1}^n 0b_{n-k}\right) x^n\\
+   &=  \sum_{n= 0}^{\infty} b_n x^n\\
+  &=  g\text{ .}
+\end{align*}
+Let $g = 1,$ then $b_0 = 1,$ and $b_i = 0\quad \forall i>0$. So,
+\begin{align*}
+  f1 &=  \sum_{n= 0}^{\infty} \left(
+       \sum_{k=0}^n a_kb_{n-k}\right) x^n\\
+  f1 &=  \sum_{n= 0}^{\infty} \left(
+       \sum_{k=0}^{n-1} a_kb_{n-k} + a_nb_0\right) x^n\\
+  f1 &=  \sum_{n= 0}^{\infty} \left(
+    \sum_{k=0}^{n-1} a_k0 + a_n1\right) x^n\\
+  f1
+     &=  \sum_{n= 0}^{\infty} a_n x^n\\
+  &=  f\text{ .}
+\end{align*}
+
+So $\forall f\in R[[x]]: 1f=1=f1,$ that is $1$ is the multiplicative identity of $R[[x]].$
+
+\begin{align*}
+  fg &= \sum_{n= 0}^{\infty} \left(
+       \sum_{k=0}^n a_kb_{n-k}\right) x^n\\
+  \text{Let } l= n-k &\implies  k = n-l\text{ .}\\
+  k\text{ starts at } 0 \text{ and ends at } n&\implies l\text{ starts
+                                                at } n \text{ and ends
+                                                at } 0\text{ .}\\
+  \text{So,} fg &= \sum_{n= 0}^{\infty} \left(
+                 \sum_{l=n}^0 a_{n-l}b_{l}\right) x^n\\
+  &= \sum_{n= 0}^{\infty} \left(
+       \sum_{l=0}^n a_{n-l}b_{l}\right) x^n \text{ by commutativity of
+    addition in }R\\
+  &= \sum_{n= 0}^{\infty} \left(
+       \sum_{l=0}^n b_{l}a_{n-l}\right) x^n \text{ by commutativity of
+    multiplication in }R\\
+  &= gf \hspace{7.75em}\text{ by the definition of multiplication in }R[[x]]\text{ .}
+\end{align*}
+
+So, $\forall f,g\in R[[x]], fg = gf$. That is multiplication is
+commutative in $R[[x]].$
+
+If $f\neq 0$ and $h = \sum_{j=0}^\infty c_j x^j\neq 0$, then there is
+a first non-zero coefficient of
+$a_i$ of $f$, and $c_j$ of $h$.
+\begin{align*}
+  fh &= \sum_{n= 0}^{\infty} \left(
+       \sum_{k=0}^n a_kc_{n-k}\right) x^n\\
+\end{align*}
+Consider the coefficient of $x^n$, when $n = i+j$.
+\begin{align*}
+n = i+j &\implies \text{The coefficient of } x^n \text{ is
+          } \sum_{k=0}^n a_kc_{i+j-k}\\
+          k<i &\implies a_k = 0\\
+              &\implies \sum_{k=0}^{i+j} a_kc_{i+j-k} =
+                \sum_{k=i}^{i+j} a_kc_{i+j-k}\\
+  k>i \implies i+j-k <j &\implies c_{i+j-k} = 0\\
+        &\implies \sum_{k=0}^{i+j} a_kc_{i+j-k} = a_icj \neq 0\\
+  &\implies \text{ The coefficient of } x^{i+j}\text{ is not } 0 \text{ .}
+\end{align*}
+
+So, $f\neq 0$ and $h\neq 0 \implies fh \neq 0$. Which is the
+contrapositive statement to,
+\[fh=0 \implies f = 0 \text{ or } h = 0.\]
+
+So, if $R$ is an integral domain, then $R[[x]]$ is an integral
+domain.$\quad \blacksquare$
+\end{document}
+
+
+%%% Local Variables:
+%%% mode: latex
+%%% TeX-master: t
+%%% End:

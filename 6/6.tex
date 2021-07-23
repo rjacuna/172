@@ -1,0 +1,173 @@
+\documentclass{article}
+\usepackage{fontspec}
+
+% Used to embed Sage code in latex
+%\usepackage{sagetex}
+
+% Math Environment
+\usepackage{euler}        % Euler font
+\usepackage{amsmath}      % Math macros
+\usepackage{amssymb}      % Math symbols
+\usepackage{unicode-math} % Unicode support
+
+% Physics Environment
+\usepackage{physics}
+
+
+\usepackage[makeroom]{cancel} % Used to cancel terms in algebraic equations
+\usepackage{ulem} % Different underline environments
+\usepackage{polynom} %Polynomial long division
+
+% Typesetting Rules
+\setlength\parindent{0em}
+\setlength\parskip{0.618em}
+\usepackage[a4paper,lmargin=1in,rmargin=1in,tmargin=1in,bmargin=1in]{geometry}
+\setmainfont[Mapping=tex-text]{Helvetica Neue LT Std 45 Light}
+
+% Common Macros
+\newcommand\N{\mathbb{N}}
+\newcommand\Z{\mathbb{Z}}
+\newcommand\Q{\mathbb{Q}}
+\newcommand\R{\mathbb{R}}
+\newcommand\C{\mathbb{C}}
+\newcommand\A{\mathbb{A}}
+\def\res{\mathop{\text{Res}}\limits}
+
+% Color
+\usepackage[dvipsnames]{xcolor}
+\usepackage{pagecolor}
+\definecolor{Sea}{HTML}{219096}
+\pagecolor{Sea}
+\color{Goldenrod}
+
+\begin{document}
+
+\begin{center}
+  172 --- 6
+
+  RJ Acuña
+
+  (862079740)
+\end{center}\vspace{1.618em}
+
+
+\begin{enumerate}
+
+\item Recall that $\C(t) := \{f(t)/g(t) \,\mid\, f,g \in \C[t]\,\,g\not=0\}$ is the field of rational functions in a variable $t$ with coefficients in $\C$. Show that $\C(t)$ is not algebraically closed.
+
+  \uwave{pf.}
+
+  Consider $X^2 + t \in \C(t)[X],$
+  Suppose for a contradiction that $f/g \in \C(t)$ solves
+  \begin{equation}X^2+t = 0\end{equation}
+
+  It follows that, \[\left(\frac{f}{g}\right)^2 +t = 0 \iff
+    \frac{f^2}{g^2} + t = 0 \iff  f^2 + tg^2 = 0 \iff f^2 = -tg^2
+    \iff -t \mid f^2\]
+  \[f^2 = f\cdot f \text{ and } -t \mid f^2 \implies -t\mid f
+    \implies \exists t\in \C[t]: f = -t h\]
+  \[\implies (-th)^2 = -tg^2 \iff (-th)^2 + tg^2 = 0 \iff t^2h^2 +tg^2
+    = 0 \iff t(th^2 +g^2) = 0\]
+  \[\implies g^2 + th^2 = 0 \implies -t\mid g \implies \exists k\in
+    \C[t]: g = -tk\]
+  Then $g(0) = -0k$,  so $g\neq 0$ is false. Therefore, $f/g \not\in
+  \C(t)\rightarrow\leftarrow$
+
+  So, $\C(t)$ is not algebraically closed$\quad \blacksquare$
+ \item Suppose that $F \subset E$ is a \emph{finite} field extension
+   (so $E$ is finite dimensional as a vector space over $F$). Show
+   that if $F \subset R \subset E$ and $R$ is a ring, then $R$ is a
+   field.
+
+
+   \uwave{pf.}
+
+   Let $F$ be a field, and $F \subset E$ be a \emph{finite} field
+   extension. Then $E$ is a finite dimensional vector space over
+   $F$ of dimension $n$. Let $\{\vb{e}_i\}_{i=1}^{n}$ be a basis for $E$.
+
+   $R\subset E \implies \forall \vb{r}\in R,\exists! t_i\in F:  \vb{r} =
+   \sum_{i=1}^n t_i\vb{e}_i$,
+
+   If $R = E$, we're done,
+
+   Notice, $F\subset R\implies 0\in R$, and since $R$ is a ring it is
+   closed under addition.
+
+   If $R \neq E$ then, $\exists \vb{x}\in E: \vb{x}\not\in R$, Let $\langle \vb{x} \rangle$ be the span of $\vb{x}$.
+
+   $\forall s\in F, s\vb{x}\in \langle \vb{x} \rangle$. Suppose $\exists s\in F: s\vb{x} \in R$, then
+   \[F\subset R\text{ and } R\text{ is a ring} \implies \frac{1}{s}
+     \in R \text{ and } \frac{1}{s}s\vb{x} = \vb{x}
+     \in R \text{ respectively.}\]
+   That contradicts that $\vb{x}\not\in E$. So $\langle \vb{x}
+   \rangle\cap R = \{0\}$
+
+   Since $\{\vb{x}\}$ is a basis for $\langle \vb{x} \rangle$, and
+   since dim$_F E = n$ we can
+   extend it to a basis$\{\vb{x}\} \cup \{ \vb{u}_i\}_{i=1}^{n-1}$ for $E$.
+
+   We've shown that $R \subset \langle \vb{u}_1,\cdots, \vb{u}_{n-1}
+   \rangle$. Now, if $R = \langle \vb{u}_1,\cdots, \vb{u}_{n-1} \rangle$, then
+   $R$ is a field, as it is a vector subspace of a
+   finite field extension. Otherwise, we can find a $\vb{y} \in
+   \langle \vb{u}_1,\cdots, \vb{u}_{n-1} \rangle$, such that
+   $\{\vb{y}\}\cup\{ \vb{w}_i\}_{i=1}^{n-2}$ is a basis of $\langle
+   \vb{u}_1,\cdots, \vb{u}_{n-1} \rangle$, and $R\subset
+   \langle \vb{u}_1,\cdots, \vb{u}_{n-1} \rangle$. This process is
+   finite, since the dimension is $n$.
+
+   After $m$ steps there is a minimal basis $B
+   =\{\vb{v}_i\}_{i=1}^m,$ where $m$ satisfies $
+   1 \leq m < n-1$, such that
+   $R\subset \langle B \rangle$.
+   And, it also satisfies that if we remove any element $\vb{v}_k$ of
+   the basis $B$, then
+  $\langle B\backslash\{\vb{v}_k\} \rangle \subset R$.
+
+   Let $r\in R$ such that $r \not\in \langle B\backslash\{\vb{v}_k\}
+   \rangle$, then $F\subset R \implies \exists! t \in F: r =
+   t\vb{v}_k$, since $R \subset \langle  B \rangle$. So, if there
+   exists such $r$, it follows that $R = \langle B \rangle$. If, there
+   isn't such an $r$, then $R = \langle
+   B\backslash\{\vb{v}_k\}\rangle$, contradicting the minimality of
+   $B$. Therefore $R$ is a finite dimensional vector space over
+   $F$. So, $R$ is a field$\quad \blacksquare$
+
+\item Let $R$ be the smallest subring of $\R$ containing $\Q$ and
+  $\pi$, so that $\Q \subset R \subset \R$. Show that $R$ is not a
+  field by showing $\pi^{-1}$ is not in $R$.
+
+  \uwave{pf.} Since $\pi$, is a
+  transcendental number. It follows that $\forall f(x)\in \Q[x],
+  f(\pi)\neq 0$. Suppose $\pi^{-1} \in \Q[\pi],$ then for some $f(x) =
+  \sum_{k=1}^n a_kx^k \in \Q[x]$,  \[\pi^{-1} = \sum_{k=0}^n
+    a_k\pi^k\iff  1 = \sum_{k=0}^{n}
+    a_k\pi^{k+1} \iff 0 = -1 +\sum_{k=0}^{n}
+    a_k\pi^{k+1} = h(\pi) \]
+\[\implies \exists h(x)\in \Q[x]: h(\pi) = 0
+    \rightarrow\leftarrow \]
+  $\pi^{-1}\not\in R= \Q[\pi] \implies R$ is not a field $\quad \blacksquare$
+
+\item Let $F$ be a finite field with $p^n$ elements (which we showed in class is automatically a field extension of $\Z/p\Z$). Suppose that $\alpha \in F$ generates the group $F^\times$ of units in $F$. Show that $deg(\alpha; \Z/p) = n$.
+
+\uwave{pf.}
+
+By 33.11 for every finite field $\Z/p\Z$, and for every $n\in \N$ there exists
+an irreducible polynomial $f(x)$ of
+degree $n$ in $(\Z/p\Z)[x]$. Then, since $f(x)$ is irreducible, $\langle f(x) \rangle$ is maximal,
+therefore $(\Z/p\Z)[x]/\langle f(x) \rangle$ is a field. Furthermore,
+it has $p^n$ elements, sine it is an $n$-dimensional vector space over
+$\Z/p\Z$, which has $p$ elements. By 33.12 $(\Z/p\Z)[x]/\langle f(x)
+\rangle$ is  isomorphic to $F$. So,
+deg$(\alpha;\Z/p\Z) =$ deg$f = n\quad \blacksquare$
+
+\end{enumerate}
+
+
+
+\end{document}
+%%% Local Variables:
+%%% mode: latex
+%%% TeX-master: t
+%%% End:

@@ -1,0 +1,171 @@
+\documentclass{article}
+\usepackage{fontspec}
+
+% Used to embed Sage code in latex
+\usepackage{sagetex}
+
+% Math Environment
+\usepackage{euler}        % Euler font
+\usepackage{amsmath}      % Math macros
+\usepackage{amssymb}      % Math symbols
+\usepackage{unicode-math} % Unicode support
+
+
+\usepackage[makeroom]{cancel} % Used to cancel terms in algebraic equations
+\usepackage{ulem} % Different underline environments
+\usepackage{polynom} %Polynomial long division
+
+% Typesetting Rules
+\setlength\parindent{0em}
+\setlength\parskip{0.618em}
+\usepackage[a4paper,lmargin=1in,rmargin=1in,tmargin=1in,bmargin=1in]{geometry}
+\setmainfont[Mapping=tex-text]{Helvetica Neue LT Std 45 Light}
+
+% Common Macros
+\newcommand\N{\mathbb{N}}
+\newcommand\Z{\mathbb{Z}}
+\newcommand\Q{\mathbb{Q}}
+\newcommand\R{\mathbb{R}}
+\newcommand\C{\mathbb{C}}
+\newcommand\A{\mathbb{A}}
+\def\res{\mathop{\text{Res}}\limits}
+
+% Color
+\usepackage[dvipsnames]{xcolor}
+\usepackage{pagecolor}
+\definecolor{DeepMossGreen}{HTML}{394820}
+\pagecolor{DeepMossGreen}
+\color{Goldenrod}
+
+\begin{document}
+
+\begin{center}
+  172 --- 2
+
+  RJ Acuña
+
+  (862079740)
+\end{center}\vspace{1.618em}
+
+
+The \emph{center} of a ring $R$ is
+\[ Z(R) := \{x \in R \mid xa=ax \quad \forall a \,\in\, R\}
+\]
+\begin{enumerate}
+\item Show $Z(R)$ is a subring of $R$.
+
+  \uwave{pf.}
+
+  Let $x,y \in Z(R), a \in R$. Then,
+  \[a0=0=0a\]
+  \begin{align*}
+    a,x,y \in R &\implies a(x-y) = ax-ay\\
+    y\in Z(R) &\implies a(x-y) = ax-ya\\
+    x\in Z(R) &\implies a(x-y) = xa-ya\\
+    a,x,y \in R &\implies xa-ya = (x-y)a\\
+    &\implies a(x-y) = (x-y)a
+  \end{align*}
+  \begin{align*}
+    y\in R &\implies xy = yx\\
+    \text{Multiplication by } a &\implies axy = ayx\\
+    y\in Z(R) &\implies axy = yax\\
+    x\in Z(R) &\implies axy = yxa
+  \end{align*}
+    So, $x,y\in \Z(R) \implies  0, x-y,$ and $ xy \in \Z(R)$.
+
+  Thus, by the conclusion of exercise 48  in p. 176
+  $Z(R)$ is a sub-ring of $R$ $\quad \blacksquare$
+
+\item Show that the center of $M_{2\times 2}(\R)$ is spanned (as a vector space) by the identity matrix.
+
+  \uwave{pf.}
+
+  Suppose, $\exists X=\begin{pmatrix} x_1 & x_2\\x_3 &
+    x_4 \end{pmatrix} \in Z\left( M_{2\times 2}(\R) \right): \forall
+  r\in \R \quad X\neq
+  rI$. Let $A = \begin{pmatrix} 1&0\\0&0\end{pmatrix}$ and $B =\begin{pmatrix} 0&1\\0&0\end{pmatrix}$
+  \begin{align*} XA = AX \implies \begin{pmatrix} x_1 & x_2\\x_3 &
+      x_4 \end{pmatrix} \begin{pmatrix} 1&0\\0&0\end{pmatrix} &=
+  \begin{pmatrix} x_1&0\\x_3&0\end{pmatrix}\\ &= \begin{pmatrix} x_1
+    &x_2\\0&0\end{pmatrix}\\ &= \begin{pmatrix} 1&0\\0&0\end{pmatrix} \begin{pmatrix} x_1 & x_2\\x_3 &
+      x_4 \end{pmatrix}\\&\implies
+    x_2=x_3 = 0&\implies X = \begin{pmatrix}x_1 &0 \\ 0&x_4\end{pmatrix} \end{align*}
+  \begin{align*} XB = BX \implies \begin{pmatrix} x_1 & 0\\0 &
+      x_4 \end{pmatrix} \begin{pmatrix} 0&1\\0&0\end{pmatrix} &=
+  \begin{pmatrix} 0&x_1\\0&0\end{pmatrix}\\ &= \begin{pmatrix} 0
+    &x_4\\0&0\end{pmatrix}\\ &= \begin{pmatrix}
+    0&1\\0&0\end{pmatrix} \begin{pmatrix} x_1 & 0\\0 &
+      x_4 \end{pmatrix}\\&\implies
+    x_1=x_4\\ &\implies X = x_1I \end{align*}
+  $X\neq rI \rightarrow\leftarrow X = x_1I$. So by contradiction $X =
+  rI$.
+
+  Therefore, $Z(M_{2\times 2}(\R))=$ Span $\{I\}\quad \blacksquare$
+\item Let $R = \R S_n$ be the group algebra of the symmetric group, and define the element
+\[
+x = \sum_{1 \leq i \not= j \leq n} (i\,j)
+\]
+(For example, if $n=3$, then $x = (1\,2) + (1\,3) + (2\,3)$.) Show that for any transposition $(k\,\ell) \in S_n$ we have $(k\,\ell) x (k\,\ell) = x$.\\
+(Hint: you can use the fact that if $\sigma \in S_n$ and $(a_1 \, \cdots a_k)$ is a cycle in $S_n$, then  $\sigma (a_1 \,a_2 \cdots \, a_k)\sigma^{-1} = (\sigma(a_1) \, \cdots \sigma(a_k))$.)\\
+Note: this actually shows $x \in Z(S_n)$, because any element of $S_n$ is a product of transpositions.
+
+\uwave{pf.}
+
+\[
+(k\,l)x(k\,l)= \sum_{1 \leq i \not= j \leq n} (k\,l)(i\,j)(k\,l)
+\quad\text{ by
+  left and right distribution}
+\]
+
+Now either, (I) $i\neq k$ and $j\neq k$, (II)  $i = k$ and $j\neq l$, (III)$i \neq k$
+and $j= l$, or (IV) $i=k$ and $j=l$.
+
+(I): $(k\, l)(i\,j)(k\, l) = (k\, l)(k\, l)(i\, j) = (i\, j)$
+
+(II): $(k\, l)(k\,j)(k\, l) = (k\, l)(l\, j) = (k\, j)$
+
+(III): $(k\, l)(i\,l)(k\, l) = (k\, l)(k\, i) = (i\, l)$
+
+(I): $(k\, l)(k\,l)(k\, l) = (k\, l)(k\, l)(k\, l) = (k\, l)$
+
+Thus, \[(k\,l)x(k\,l) = x\quad \blacksquare\]
+\item Use Fermat's theorem to compute the remainder of $37^{49}$ when it is divided by $7$.
+
+  \[\text{\uwave{slu.} }37^{49} = 37^{48+1} = 37^{48}37 = 37^{6\cdot 8}37= (37^6)^8 37
+    \equiv_7 1^8 37 \equiv_7 37 \equiv_7 5\cdot 7 +2 \equiv_7 2\text{
+      So, 2}\quad \blacklozenge\]
+
+
+\item Let $\phi_a: R[x] \to R$ be the evaluation homomorphism, defined
+  by $\phi_a(f) = f(a)$.
+
+  Let $f(x) = (x-2)(x+3)$.
+\begin{enumerate}
+\item If $R = \Z$, find all $a \in R$ with $\phi_a(f) = 0$.
+
+  \uwave{slu.} $\Z$ is an integral domain, thus $a= 2$, or $a =
+  -3\quad \lozenge$
+
+\item If $R = \Z/8\Z$, find all $a \in R$ with $\phi_a(f) = 0$.
+
+  \uwave{slu.}
+  \begin{align*}
+    f(1) = (1-2)(1+3) &\equiv_8 4\\
+    f(2) = (2-2)(2+3) &\equiv_8 0\\
+    f(3) = (3-2)(3+3) &\equiv_8 6\\
+    f(4) = (4-2)(4+3) &\equiv_8 6 \\
+    f(5) = (5-2)(5+3) &\equiv_8 0\\
+    f(6) = (6-2)(6+3) &\equiv_8 4\\
+    f(7) = (7-2)(7+3) &\equiv_8 2\\
+  \end{align*}
+  So, $a = 2$ or $a = 5\quad \lozenge$
+\end{enumerate}
+
+
+\end{enumerate}
+
+\end{document}
+%%% Local Variables:
+%%% mode: latex
+%%% TeX-master: t
+%%% End:

@@ -1,0 +1,99 @@
+\documentclass{article}
+\usepackage{fontspec}
+\usepackage{xcolor}
+%\usepackage{sagetex}
+
+\usepackage{euler}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{unicode-math}
+
+
+\usepackage[makeroom]{cancel}
+\usepackage{ulem}
+
+\setlength\parindent{0em}
+\setlength\parskip{0.618em}
+\usepackage[a4paper,lmargin=1in,rmargin=1in,tmargin=1in,bmargin=1in]{geometry}
+
+\setmainfont[Mapping=tex-text]{Helvetica Neue LT Std 45 Light}
+
+\newcommand\N{\mathbb{N}}
+\newcommand\Z{\mathbb{Z}}
+\newcommand\Q{\mathbb{Q}}
+\newcommand\R{\mathbb{R}}
+\newcommand\C{\mathbb{C}}
+\newcommand\A{\mathbb{A}}
+
+\usepackage{harpoon}
+\newcommand*{\harp}[1]{\overrightharp{\ensuremath{#1}}}
+
+
+\usepackage[thinlines]{easytable}
+\begin{document}
+
+\paragraph{1} $\text{ }$
+
+(a) Show that every element of $M_{n\times n}(\Q)$ is either a unit or
+a zero divisor.
+
+(b) Find an element of $M_{2\times 2}(\Z)$ that is not a unit or a
+zero divisor.
+
+\uwave{pf. of (a)}
+
+Let $A \in M_{n\times n}(\Q)$
+\[A\text{ is invertible} \iff \text{nullspace}(A) = \{\harp{0}\}\]
+\[\text{ Suppose that nullspace}(A) \neq \{\harp{0}\}\]
+\[\implies \exists \harp{x}\in \Q^n: A\harp{x}=\harp{0} \text{ where }
+  \harp{x}\neq \harp{0}\text{ .}\]
+
+Then, form the square$n\times n$
+matrix,\[B = [\harp{x}|\harp{0}|\cdots|\harp{0}]\]with $\harp{x}$ in the
+first column and $\harp{0}$ in the remaining $n-1$ columns, for $n\geq
+1$.
+
+Then, $AB = 0_{2\times 2},$ so if det$(A) = 0$, $A$ is a zero
+divisor.
+
+Suppose $A$ is a zero divisor. Then $\exists C =
+[\harp{c_1}|\dots|\harp{c_n}] \in M_{n\times n}(\Q): C\neq
+0_{2\times 2}$ and $AC = 0_{2\times 2}$.
+\[\implies C =
+  [\harp{c_1}|\harp{0}|\cdots|\harp{0}] +
+  [\harp{0}|\harp{c_2}|\cdots|\harp{0}]+\dots +[\harp{0}|\harp{0}|\cdots|\harp{c_n}]\]
+\[\implies AC =
+  A([\harp{c_1}|\harp{0}|\cdots|\harp{0}] +
+  [\harp{0}|\harp{c_2}|\cdots|\harp{0}]+\dots\dots
+  +[\harp{0}|\harp{0}|\cdots|\harp{c_n}]) = A[\harp{c_1}|\harp{0}|\cdots|\harp{0}] +
+  A[\harp{0}|\harp{c_2}|\cdots|\harp{0}]+ \dots
+  +A[\harp{0}|\harp{0}|\cdots|\harp{c_n}] = 0_{n\times n} \]
+\[\implies \exists i: \harp{c_i}\neq \harp{0} \text{ and } A\harp{c_i} = 0\]
+\[\implies \det(A) = 0\]
+If det$(A) \neq 0$, then $A$ is invertible, i.e: $\exists B\in
+M_{n\times n}(\Q): AB = BA = I_{n\times n}$. So, $A$ is a
+unit. Therefore, every element of $M_{n\times n}(\Q)$ is either a zero divisor or a unit $\quad \blacksquare$
+
+\uwave{slu. of (b)}
+
+By above if a matrix is a zero divisor it's determinant has to be
+zero. Therefore, we need a matrix with non-zero determinant that's not
+a unit.
+
+Consider $C = \begin{pmatrix}1&0\\0&2\end{pmatrix}$, it has a unique inverse
+$\frac{1}{2}\begin{pmatrix} 2&0\\0&1\end{pmatrix}$ in the ring of
+matrices with rational entries. However, $\frac{1}{2}\not\in \Z$, so
+one of
+its entries is not an integer. Therefore,  $C$ is not a unit in
+$M_{2\times 2}(\Z)\quad \lozenge$
+
+
+
+
+\end{document}
+
+
+%%% Local Variables:
+%%% mode: latex
+%%% TeX-master: t
+%%% End:

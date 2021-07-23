@@ -1,0 +1,83 @@
+\documentclass{article}
+\usepackage{fontspec}
+\usepackage{xcolor}
+%\usepackage{sagetex}
+
+\usepackage{euler}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{unicode-math}
+
+
+\usepackage[makeroom]{cancel}
+\usepackage{ulem}
+
+\setlength\parindent{0em}
+\setlength\parskip{0.618em}
+\usepackage[a4paper,lmargin=1in,rmargin=1in,tmargin=1in,bmargin=1in]{geometry}
+
+\setmainfont[Mapping=tex-text]{Helvetica Neue LT Std 45 Light}
+
+\newcommand\N{\mathbb{N}}
+\newcommand\Z{\mathbb{Z}}
+\newcommand\Q{\mathbb{Q}}
+\newcommand\R{\mathbb{R}}
+\newcommand\C{\mathbb{C}}
+\newcommand\A{\mathbb{A}}
+
+\usepackage{harpoon}
+\newcommand*{\harp}[1]{\overrightharp{\ensuremath{#1}}}
+
+
+\usepackage[thinlines]{easytable}
+\begin{document}
+
+\paragraph{4} $\text{ }$
+
+Here we consider properties of $1 − x$ viewed as an element of different rings.
+
+(a) Show that $f = 1 − x$ is a unit in $\Z[[x]]$.
+
+(b) Show that $f (x) = 1 − x$ is not a unit in the ring of continuous functions on $\R$.
+
+(c) Show that $f (x) = 1 − x$ is a unit in the ring of continuous
+functions on $[0, 1/2]$.
+
+\uwave{slu. of (a)}
+\[\text{Let } S = \sum_{n=0}^\infty x^n = 1 + \sum_{n=1}^\infty x^n\]
+\[\implies xS = x\sum_{k=0}^\infty x^k = \sum_{k=0}^\infty x^{k+1} \]
+\[ \text{Let } n = k+1 \implies xS = \sum_{n=1}^\infty x^n \]
+\[ S =  1 + \sum_{n=1}^\infty x^n \implies S =
+  1 + xS \implies S-xS = 1\]
+\[\implies (1-x)\sum_{n=0}^{\infty}x^n = 1 \implies 1-x\text{ is a unit
+    in }R[[x]]\quad \blacklozenge\]
+
+\uwave{slu. of (b)}
+
+$f$ would be a unit if there exists $g$ in $C(\R)$ where,
+
+\[(fg)(x) = f(x)g(x) = 1\]
+
+That is if $f(x) = 1-x$, then, \[(1-x)g(x) = 1 \iff g(x) =
+  \frac{1}{1-x}\text{ .}\]
+
+But, $g(x) \not\in C(\R),$ since $g(1)$ is an essential discontinuity
+of $g$. That is we can't find some other function that is
+continuous on $\R$, since neither the left hand limit nor the right
+hand limit of $g$
+as $x\rightarrow 0$ exist. So, $1-x$ is not a unit in the ring of
+continuous functions on $\R\quad \lozenge$
+
+\uwave{slu. of (c)}
+
+$1\not\in [0,\frac{1}{2}]$ so $\frac{1}{1-x}$ is continuous on
+$[0,\frac{1}{2}]$. So by the computation in the solution of (b) we
+have that $1-x$ is a unit in $C([0,\frac{1}{2}])\quad \lozenge$
+
+\end{document}
+
+
+%%% Local Variables:
+%%% mode: latex
+%%% TeX-master: t
+%%% End:
